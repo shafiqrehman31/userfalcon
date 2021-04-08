@@ -17,11 +17,11 @@ Route::get('/', function () {
 
 
 Route::prefix('user')->group(function () {
-    Route::get('clear-cache', function() {
+    Route::get('cache-clear', function() {
         $exitCode = Artisan::call('cache:clear');
          return 'cache:cleared';
     });
-    Route::get('clear-config', function() {
+    Route::get('config-clear', function() {
         $exitCode = Artisan::call('config:clear');
          return 'config:cleared';
     });
