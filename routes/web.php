@@ -15,7 +15,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::prefix('user')->group(function () {
+    Route::get('clear-cache', function() {
+        $exitCode = Artisan::call('cache:clear');
+         return 'cache:cleared';
+    });
+    Route::get('clear-config', function() {
+        $exitCode = Artisan::call('config:clear');
+         return 'config:cleared';
+    });
+    Route::get('route-clear', function() {
+        $exitCode = Artisan::call('route:clear');
+        return 'route:cleared';
+    });
+    Route::get('view-clear', function() {
+        $exitCode = Artisan::call('view:clear');
+        return 'view:cleared';
+    });
     Route::get('/', 'UserController@ShowUserLoginPage');
     Route::get('login', 'UserController@ShowUserLoginPage');
     Route::post('dologin', 'UserController@LoginUser');

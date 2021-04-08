@@ -62,8 +62,8 @@ class DepositController extends Controller
             return redirect($response->data->hosted_url);*/
         //dd($request->all());
         //ApiClient::init("09d4f728-8d76-4636-a442-e5227ded1d9d");
-        $apiClientObj = ApiClient::init("09d4f728-8d76-4636-a442-e5227ded1d9d");
-        $apiClientObj->setTimeout(10);
+   /*     $apiClientObj = ApiClient::init("09d4f728-8d76-4636-a442-e5227ded1d9d");
+        $apiClientObj->setTimeout(6);
         //ApiClient::init("09d4f728-8d76-4636-a442-e5227ded1d9d");
 
         $chargeObj = new Charge();
@@ -103,16 +103,17 @@ class DepositController extends Controller
             // Retrieve charge by "id"
             try {
                 $retrievedCharge = Charge::retrieve($chargeObj->id);
-                dd($retrievedCharge);
+                //dd($retrievedCharge);
                 $hosted_url = $retrievedCharge->hosted_url;
+                //dd($hosted_url);
                 header('location: '.$hosted_url);
             } catch (\Exception $exception) {
                 echo sprintf("Enable to retrieve charge. Error: %s \n", $exception->getMessage());
             }
-        }
+        }*/
 
 
-/*        $apiClientObj = ApiClient::init("09d4f728-8d76-4636-a442-e5227ded1d9d");
+        $apiClientObj = ApiClient::init("09d4f728-8d76-4636-a442-e5227ded1d9d");
         $apiClientObj->setTimeout(3);
         $chargeObj = new Charge();
         //dd(Session::get('userData')['first_name']);
@@ -124,12 +125,28 @@ class DepositController extends Controller
         ];
         $chargeObj->pricing_type = 'fixed_price';
         $chargeObj->save();
-        $chargeId = $chargeObj->id;
-        ///$charge = Charge::retrieve($chargeId);
-        $allEvents = Event::getAll();
-        //dd($allEvents);
+        if ($chargeObj->id) {
+            $chargeObj->description = "New description";
+            // Retrieve charge by "id"
+            try {
+                $retrievedCharge = Charge::retrieve($chargeObj->id);
+                //dd($retrievedCharge);
+                $deposite = new Deposit();
+                $deposite->name = Session::get('userData')['first_name'] ;
+                $deposite->user_id = Session::get('userData')['id'];
+                $deposite->amount = $chargeObj->pricing['local']['amount'];
+                $deposite->currency = $chargeObj->pricing['local']['currency'];
+                $deposite->status = $chargeObj->timeline[0]['status'];
 
-        return redirect($chargeObj->hosted_url);*/
+                $hosted_url = $retrievedCharge->hosted_url;
+                //dd($hosted_url);
+                return redirect($chargeObj->hosted_url);
+                //header('location: '.$hosted_url);
+            } catch (\Exception $exception) {
+                echo sprintf("Enable to retrieve charge. Error: %s \n", $exception->getMessage());
+            }
+        }
+        //return redirect($chargeObj->hosted_url);
     }
 
     public function CreateCashBoxPage()

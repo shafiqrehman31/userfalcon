@@ -69,12 +69,12 @@
 
     <div class="content">
         <div class="title m-b-md">
-            User Falcon
+             Falcon Traders
         </div>
 
         <div class="links">
 
-                    <a href="{{ url('admin/login') }}">Admin</a> <a href="{{ url('user/login') }}">User</a>
+                    <a href="{{ url('admin/login') }}">Admin Login</a> <a href="{{ url('user/login') }}">User Login</a>
 
         </div>
     </div>

@@ -17,7 +17,7 @@
 <body>
 <br/>
 <div class="container box" style="margin-top:130px">
-    <h3 align="center">{{env('APP_NAME') }} Admin Login</h3><br/>
+    <h3 align="center">{{env('APP_NAME') }} Login</h3><br/>
 
     @if ($success = Session::get('message'))
         <div class="alert alert-success alert-block">
