@@ -368,21 +368,21 @@ class UserController extends Controller
     {
         //Retrieve the user from the database
         $user = DB::table('tbl_users')->where('email', $email)->select('first_name', 'last_name', 'email')->first();
-        //dd($user);
+//        dd($user);
         //Generate, the password reset link. The token generated is embedded in the link
         $link = url('user/reset-password-view/' . $token . '?email=' . urlencode($user->email));
 
         $email = new \SendGrid\Mail\Mail();
-        $email->setFrom("dev.uforialogic@gmail.com", "User Falcon");
+        $email->setFrom("rafisweet5@gmail.com", "User Falcon");
         $email->setSubject("Reset Admin password request");
-        $email->addTo("refaqatkhattak88@gmail.com", $user->first_name);
+        $email->addTo($user->email, $user->first_name);
         $email->addContent(
             "text/html", "<p>Please click this link to reset your password.</p><br><a href='$link'>$link</a>"
         );
-        $sendgrid = new \SendGrid('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');
+        $sendgrid = new \SendGrid('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');
         try {
             $response = $sendgrid->send($email);
-
+//            dd($response);exit;
             return $response;
             //dd($response);
         } catch (Exception $e) {

@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +15,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
 
 Route::prefix('user')->group(function () {
     Route::get('cache-clear', function() {
@@ -126,5 +126,42 @@ Route::prefix('user')->middleware(['validAdmin'])->group(function () {
 
 });
 
+Route::prefix('admin')->group(function () {
 
+    
+    //get route
+    Route::get('/', 'AdminController@index');
+    Route::get('login', 'AdminController@Login');
+    Route::get('dashboard', 'AdminController@Dashboard');
+    Route::get('user', 'AdminController@listUserView');
+    Route::get('user/adduser', 'AdminController@create');
+    Route::get('user/edit/{id}', 'AdminController@edit')->name('showEdit');
+    Route::get('user/logout', 'AdminController@logout');
+    Route::get('/profile', 'AdminController@showAdminProfile');
+    Route::get('forgot-password', 'AdminController@ForgotPasswordView');
+
+
+    Route::get('user/destroy/{id}', 'AdminController@destroy');
+    
+    
+    //post route
+    Route::post('user', 'AdminController@ListUsers');
+    Route::post('login', 'AdminController@AdminLogin');
+    Route::post('user/adduser', 'AdminController@store');
+    Route::post('user/update', 'AdminController@update');
+    Route::post('reset_password_without_token', 'AdminController@validatePasswordRequest');
+
+    // Auth::routes(['verify' => true]);
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // });
+      
+         
+    // Route::get('/home', 'HomeController@index')->name('home');
+
+    
+    // Route::resource('AdminController', AdminController::class);
+
+    
+});
 
