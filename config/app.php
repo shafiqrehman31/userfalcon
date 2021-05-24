@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'NextDayLabel'),
+    'name' => env('APP_NAME', 'Falcon Traders'),
 
     /*
     |--------------------------------------------------------------------------

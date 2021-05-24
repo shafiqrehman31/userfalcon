@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{env('APP_NAME') }} Admin Login</title>
+    <title>{{env('APP_NAME') }} User Login</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
@@ -18,7 +18,7 @@
 <body>
 <br/>
 <div class="container box" style="margin-top:130px">
-    <h3 align="center">Admin Update Password</h3><br/>
+    <h3 align="center">User Update Password</h3><br/>
 
     @if ($success = Session::get('message'))
         <div class="alert alert-success alert-block">
@@ -56,7 +56,7 @@
         </div>
         <div class="form-group">
             <input type="submit" name="updatePassword" class="btn btn-primary" value="Update"/>
-            <a href="{{url('admin/login')}}" class="btn btn-link">Cancel</a>
+            <a href="{{url('user/login')}}" class="btn btn-link">Cancel</a>
         </div>
     </form>
     <script>

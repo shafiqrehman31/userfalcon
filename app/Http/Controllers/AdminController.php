@@ -280,7 +280,7 @@ class AdminController extends Controller
         $email->addContent(
             "text/html", "<p>Please click this link to reset your password.</p><br><a href='$link'>$link</a>"
         );
-        $sendgrid = new \SendGrid('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');
+        $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
 
         try {
         // dd('fdffdfdfdf');exit;

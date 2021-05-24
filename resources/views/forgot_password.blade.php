@@ -17,7 +17,7 @@
 <body>
 <br/>
 <div class="container box" style="margin-top:130px">
-    <h3 align="center">Admin Forgot Password</h3><br/>
+    <h3 align="center">User Forgot Password</h3><br/>
 
     @if ($success = Session::get('message'))
         <div class="alert alert-success alert-block">
