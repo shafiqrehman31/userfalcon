@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Validator;
 use App\Models\UserModel;
-
+use App\Mail\TestEmail;
 
 
 class AdminController extends Controller
@@ -272,21 +272,22 @@ class AdminController extends Controller
         // dd($user);exit;
     //Generate, the password reset link. The token generated is embedded in the link
     $link = url('user/reset-password-view/'. $token . '?email=' . urlencode($user->email));
-
+        
         $email = new \SendGrid\Mail\Mail();
-        $email->setFrom("rafisweet5@gmail.com", "User Falcon");
+        $email->setFrom("fakharfv465@gmail.com", "User Falcon");
         $email->setSubject("Reset Admin password request");
         $email->addTo($user->email, $user->first_name);
         $email->addContent(
             "text/html", "<p>Please click this link to reset your password.</p><br><a href='$link'>$link</a>"
         );
-        $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
 
+        $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
+        // dd(env('SENDGRID_API_KEY'));
         try {
         // dd('fdffdfdfdf');exit;
         //Here send the link with CURL with an external email API 
         $response = $sendgrid->send($email);
-//         dd($response);exit();
+        //  dd($response);exit();
         return $response;
         } catch (Exception $e) {
         return false;

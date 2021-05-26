@@ -373,7 +373,7 @@ class UserController extends Controller
         $link = url('user/reset-password-view/' . $token . '?email=' . urlencode($user->email));
 
         $email = new \SendGrid\Mail\Mail();
-        $email->setFrom("rafisweet5@gmail.com", "User Falcon");
+        $email->setFrom("fakharfv465@gmail.com", "User Falcon");
         $email->setSubject("Reset Admin password request");
         $email->addTo($user->email, $user->first_name);
         $email->addContent("text/html", "<p>Please click this link to reset your password.</p><br><a href='$link'>$link</a>"
@@ -383,7 +383,7 @@ class UserController extends Controller
             $response = $sendgrid->send($email);
 
             return $response;
-            //dd($response);
+            dd($response);
         } catch (Exception $e) {
             echo 'Caught exception: ' . $e->getMessage() . "\n";
         }
